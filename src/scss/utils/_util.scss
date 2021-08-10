@@ -1,0 +1,61 @@
+@import "../abstract/mixin";
+.container{
+    width: 120rem;
+    margin:0 auto;
+    @include breakpoint(mobile){
+        width: 100%;
+        padding: 0 2rem;
+    }
+    @include breakpoint(tablet){
+        width: 100%;
+        padding: 0 2rem;
+    }
+    @include breakpoint(laptop){
+        width: 100%;
+        padding: 0 2rem;
+    }
+}
+
+.mt-8{
+    margin-top: 8rem;
+}
+.form-title{
+    font-size: 2rem;
+}
+.group{
+    margin-bottom: 1.3rem;
+    &__control{
+        width: 100%;
+        border: none;
+        outline: none;
+        padding: 1.5rem;
+        background: $silver;
+        border-bottom: 2px solid transparent;
+        transition: all 0.5s;
+        &:focus{
+            border-bottom-color: $green;
+        }
+    }
+}
+
+.btn{
+    text-decoration: none;
+    outline: none;
+    color: $white;
+    height: 4.5rem;
+    padding: 1.2rem 1rem;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 1.5rem;
+    border:none;
+    cursor: pointer;
+}
+
+.btn-default{
+    background: $green
+}
+
+.btn-block{
+    width: 100%;
+    
+}

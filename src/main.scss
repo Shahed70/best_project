@@ -1,0 +1,21 @@
+@import "scss/base/reset";
+
+//import navbar
+@import "scss/components/navbar";
+
+//import utils
+@import "scss/utils/util";
+
+//Import layout 
+@import "scss/layout/grid";
+
+// Import bgImage
+@import "scss/components/bgImage";
+
+//Import account
+@import "scss/components/account";
+
+
+//Import not found file
+@import "scss/components/notFound.scss"
+

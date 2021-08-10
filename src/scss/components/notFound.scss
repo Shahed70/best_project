@@ -1,0 +1,18 @@
+@import "../abstract/extends";
+@import "../abstract/variable";
+.notFound{
+    width: 100%;
+    height: calc(100vh - 8rem);
+    @extend %flex-center;
+    &_container{
+        &_h1{
+            font-size: 6rem;
+            color: $green;
+            text-align: center;
+        }
+        &_p{
+            font-size: 1.6rem;
+            text-align: center;
+        }
+    }
+}
