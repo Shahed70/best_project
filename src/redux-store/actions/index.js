@@ -34,7 +34,7 @@ export const loginAction = (user) => {
       dispatch({ type: CLOSE_LOADER });
       localStorage.setItem("token", data.token);
       dispatch({ type: SET_TOKEN, payload: data.token });
-      console.log(data);
+      //console.log(data.token);
     } catch ({response}) {
       dispatch({ type: CLOSE_LOADER });
       if (response.data.errors) {
