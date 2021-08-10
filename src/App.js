@@ -8,17 +8,20 @@ import Dashboard from "./components/shared/Dashboard";
 import PrivateRoute from "./private/PrivateRoute";
 import RouteLinks from "./private/RouteLinks";
 import NotFound from "./components/notFound/NotFound";
+import { HelmetProvider } from "react-helmet-async";
 function App() {
   return (
     <Router>
-      <Navbar />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <RouteLinks exact path="/register" component={Register} />
-        <RouteLinks exact path="/login" component={Login} />
-        <PrivateRoute path="/dashboard" exact component={Dashboard} />
-        <Route component={NotFound}/>
-      </Switch>
+      <HelmetProvider>
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <RouteLinks exact path="/register" component={Register} />
+          <RouteLinks exact path="/login" component={Login} />
+          <PrivateRoute path="/dashboard" exact component={Dashboard} />
+          <Route component={NotFound} />
+        </Switch>
+      </HelmetProvider>
     </Router>
   );
 }

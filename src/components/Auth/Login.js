@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
-import { Helmet } from "react-helmet";
-import { useDispatch } from "react-redux";
-import { loginAction } from "../../redux-store/actions";
+import { Helmet } from "react-helmet-async";
+import { useDispatch, useSelector } from "react-redux";
+import {loginAction } from "../../redux-store/actions";
 const Login = () => {
   const [userCredential, setuserCredential]  = useState({email:"", password:""})
   const dispatch = useDispatch()
+  const {loading, loginErrors} = useSelector(state => state.auth)
+  console.log(loginErrors);
   const handleLoginSubmit = e => {
     e.preventDefault()
     dispatch(loginAction(userCredential))
-    //console.log(userCredential);
   }
+
+useEffect(()=> {
+  if(loginErrors.length >0){
+      loginErrors.map(err => toast.error(err.msg))
+  }
+},[loginErrors])
   return (
     <>
       <Helmet>
@@ -53,7 +60,7 @@ const Login = () => {
                   <input
                     type="submit"
                     className="btn btn-default btn-block"
-                    value="login"
+                    value={loading ? '...':'Login'}
                   />
                 </div>
               </form>
@@ -61,7 +68,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <Toaster/>
+      <Toaster position="top-right" reverseOrder={false}/>
     </>
   );
 };

@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { useDispatch, useSelector } from "react-redux";
 import { registerAction } from "../../redux-store/actions";
 import { useEffect } from "react";
-import { useHistory } from "react-router-dom";
 const Register = () => {
   const dispatch = useDispatch();
-  const history = useHistory()
   const {loading, registerErrors, user, success} = useSelector((state) => state.auth);
-  // console.log(registerErrors);
   const [users, setUsers] = useState({
     name: "",
     email: "",
@@ -29,11 +26,6 @@ const Register = () => {
   if(registerErrors.length > 0){
      registerErrors.map( err => toast.error(err.msg))
   }
-
-  // if(user){
-  //   toast.success(success)
-  //   history.push('/dashboard')
-  // }
  }, [registerErrors, user])
   
   return (

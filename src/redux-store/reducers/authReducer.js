@@ -1,12 +1,11 @@
 import jwt_decode from "jwt-decode";
-import { CLOSE_LOADER, REGISTER_ERROR, REMOVE_TOKEN, SET_LOADER, SET_TOKEN } from "../actionTypes/authTypes";
+import { CLOSE_LOADER, LOGIN_ERRORS, REGISTER_ERROR, REMOVE_TOKEN, SET_LOADER, SET_TOKEN } from "../actionTypes/authTypes";
 const initialState = {
   loading: false,
   registerErrors: [],
   loginErrors: [],
   token: "",
   user: "",
-  success: "Account has been created successfully",
 };
 const verifyToken = (token) => {
   const decodedToken = jwt_decode(token);
@@ -34,9 +33,11 @@ const authReducer = (state = initialState, action) => {
     case SET_TOKEN:
       const decoded = verifyToken(action.payload);
       const { user, token } = decoded;
-      return { ...state, token, user: user };
+      return { ...state, token, user, loginErrors:[], registerErrors:[] };
     case REMOVE_TOKEN:
       return {...state, token:"", user:action.payload}
+    case LOGIN_ERRORS:
+      return {...state, loginErrors:action.payload}
     default:
       return state;
   }

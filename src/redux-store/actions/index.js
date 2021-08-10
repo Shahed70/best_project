@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
   CLOSE_LOADER,
+  LOGIN_ERRORS,
   REGISTER_ERROR,
   SET_LOADER,
   SET_TOKEN,
@@ -34,8 +35,13 @@ export const loginAction = (user) => {
       localStorage.setItem("token", data.token);
       dispatch({ type: SET_TOKEN, payload: data.token });
       console.log(data);
-    } catch (error) {
+    } catch ({response}) {
       dispatch({ type: CLOSE_LOADER });
+      if (response.data.errors) {
+        dispatch({ type: LOGIN_ERRORS, payload: response.data.errors });
+      } else {
+        dispatch({ type: LOGIN_ERRORS, payload: response.data });
+      }
     }
   };
 };
